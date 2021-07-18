@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ItemDetails from '../../ItemDetails/ItemDetails'
-import SubscribeForm from '../../SubscribeForm'
+import { ItemDetails } from '../../ItemDetails'
+import { SubscribeForm } from '../../SubscribeForm'
 import { Form, STEPS } from '../TrackItemWizard'
 import { ArrowNarrowLeftIcon } from '@heroicons/react/solid'
 import { initialForm } from '../TrackItemWizard'

@@ -1,11 +1,11 @@
-import { Form } from "../TrackItemWizard/TrackItemWizard"
+import { Form } from "./TrackItemWizard/TrackItemWizard"
 import React from 'react'
 
 type ItemDetailsProps = {
     item: Form['item']
 }
 
-const ItemDetails = ({item}: ItemDetailsProps) => {
+export const ItemDetails = ({item}: ItemDetailsProps) => {
     return (
         <div className="flex flex-col max-w-sm w-full">
             <div className="flex flex-col mb-5">
@@ -19,5 +19,3 @@ const ItemDetails = ({item}: ItemDetailsProps) => {
         </div>
     )
 }
-
-export default ItemDetails

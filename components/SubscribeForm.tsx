@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { postData } from '../../utils/api'
-import Button from '../Button'
-import Input from '../Input'
-import SelectMenu from '../SelectMenu'
-import { Form, STEPS } from '../TrackItemWizard/TrackItemWizard'
+import { postData } from '../utils/api'
+import { Button } from './Button'
+import { Input } from './Input'
+import { SelectMenu } from './SelectMenu'
+import { Form, STEPS } from './TrackItemWizard/TrackItemWizard'
 import * as yup from 'yup';
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
