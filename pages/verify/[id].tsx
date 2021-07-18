@@ -44,7 +44,7 @@ function VerifyEmailPage() {
           <div className="space-y-20 flex flex-col items-center">
             <div className="flex flex-col items-center">
                 <CheckCircleIcon className="w-14 h-14 text-green-500"/>
-                <span className="font-extrabold text-2xl mb-5">You're all set!</span>
+                <span className="font-extrabold text-2xl mb-5">{`You're all set!`}</span>
                 {
                   subscription && subscription.item && (
                     <span className="max-w-sm text-center">
@@ -58,7 +58,7 @@ function VerifyEmailPage() {
                 }
             </div>
 
-            <Link href={'/'}>
+            <Link href={'/'} passHref>
               <span className="underline font-bold">{"Track another item"}</span>
             </Link>
           </div>

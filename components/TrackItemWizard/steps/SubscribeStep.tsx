@@ -5,6 +5,7 @@ import { Form, STEPS } from '../TrackItemWizard'
 import { ArrowNarrowLeftIcon } from '@heroicons/react/solid'
 import { initialForm } from '../TrackItemWizard'
 import { Transition } from '@headlessui/react'
+import Image from 'next/image'
 
 type SubscribeStepProps = {
     setCurrentStep: Function,
@@ -40,7 +41,7 @@ export const SubscribeStep = ({setCurrentStep, form, setForm}: SubscribeStepProp
                 </button>
                 <div className="flex flex-wrap w-full">
                     <div className="w-full md:p-8 md:w-1/2">
-                        <img src={form.item.imageUrl} alt={'item'}/>
+                        <Image src={form.item.imageUrl} alt={'item'} layout={'fill'}/>
                     </div>
                     <div className="w-full md:p-8 flex flex-col md:w-1/2">
                         <ItemDetails item={form.item}/>
