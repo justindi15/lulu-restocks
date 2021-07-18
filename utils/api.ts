@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-const API_URL = process.env.REACT_APP_BACKEND_URL
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export const getData = (endpoint: string, config?: AxiosRequestConfig) => {
     return axios.get(`${API_URL}${endpoint}`)
