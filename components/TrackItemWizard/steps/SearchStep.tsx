@@ -36,7 +36,7 @@ export const SearchStep = ({ setCurrentStep, setForm }: SearchStepProps) => {
         // submit form and handle response
         setIsLoading(true)
         try {
-            const response = await postData('/parse', {url: url})
+            const response = await postData('/search', {url: url})
             const item = response.data
             setForm((previousForm: Form)=>({
                 ...previousForm,

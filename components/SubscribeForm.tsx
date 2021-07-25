@@ -35,7 +35,7 @@ export const SubscribeForm = ({form, setForm, setTransition}: SubscribeFormProps
 
         try {
             setIsLoading(true)
-            await postData('/subscription', data)
+            await postData('/create-subscription', data)
             setIsLoading(false)
             setTransition({isShowing: false, transitionTo: STEPS.FINISH})
         } catch (error) {
