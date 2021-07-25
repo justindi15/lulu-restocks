@@ -1,12 +1,13 @@
 import { Twilio } from "twilio";
 import * as env from 'env-var';
+import { Subscription } from "../types/subscription";
 const TWILIO_ACCOUNT_SID = env.get('TWILIO_ACCOUNT_SID').required().asString();
 const TWILIO_AUTH_TOKEN = env.get('TWILIO_AUTH_TOKEN').required().asString();
 const TWILIO_PHONE_NUMBER = env.get('TWILIO_PHONE_NUMBER').required().asString();
 
 const twilio = new Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-export const sendHasRestockedText = (subscription) => {
+export const sendHasRestockedText = (subscription: Subscription) => {
     // TODO:
     // - phone validation
     if(subscription.phone){

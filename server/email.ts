@@ -1,11 +1,12 @@
 import sgMail from "@sendgrid/mail";
 import * as env from 'env-var'
+import { Subscription } from "../types/subscription";
 const SENDGRID_API_KEY = env.get('SENDGRID_API_KEY').required().asString()
 const FRONTEND_URL = env.get('FRONTEND_URL').required().asString()
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-export const sendHasRestockedEmail = async (subscription) => {
+export const sendHasRestockedEmail = async (subscription: Subscription) => {
   const msg = {
     to: subscription.email,
     from: {
