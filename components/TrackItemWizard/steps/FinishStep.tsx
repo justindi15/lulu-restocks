@@ -31,8 +31,8 @@ export const FinishStep = ({ setCurrentStep }: FinishStepProps) => {
             <div className="space-y-20 flex flex-col items-center">
                 <div className="flex flex-col items-center">
                     <CheckCircleIcon className="w-14 h-14 text-green-500"/>
-                    <span className="font-extrabold text-2xl text-center">We sent you a confirmation email!</span>
-                    <span className="max-w-xs text-center">Verify your email address to start receiving restock notifications</span>
+                    <span className="font-extrabold text-2xl text-center">We sent you a verification email!</span>
+                    <span className="max-w-xs text-center mt-5">Tip: check your spam inbox and add <span className="font-bold">hello@lulurestocks.com</span> to your address list to ensure you receive our emails.</span>
                 </div>
 
                 <button type="button" className="underline font-bold" onClick={()=>setIsShowing(false)}>
