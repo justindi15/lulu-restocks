@@ -35,7 +35,7 @@ const createNewSubscription = async (req: NextApiRequest, res: NextApiResponse) 
     try {
         await sendVerifyEmail(subscription.email, newSubscriptionRef.id)   
     } catch (error) {
-        console.error('failed to send verification email')
+        console.error('failed to send verification email', error.message)
     }
     res.send('ok')
 }
