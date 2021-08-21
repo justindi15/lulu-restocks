@@ -1,8 +1,8 @@
 import sgMail from "@sendgrid/mail";
-import * as env from 'env-var'
 import { Subscription } from "../types/subscription";
-const SENDGRID_API_KEY = env.get('SENDGRID_API_KEY').required().asString()
-const FRONTEND_URL = env.get('FRONTEND_URL').required().asString()
+import { getEnvVar } from "../utils/getEnvVar";
+const SENDGRID_API_KEY = getEnvVar(process.env.SENDGRID_API_KEY)
+const FRONTEND_URL = getEnvVar(process.env.FRONTEND_URL)
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 

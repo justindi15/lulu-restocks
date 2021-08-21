@@ -1,12 +1,12 @@
 import axios from 'axios'
-import * as env from 'env-var'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createSubscription } from '../../server/firestore'
 import { sendVerifyEmail } from '../../server/email'
+import { getEnvVar } from '../../utils/getEnvVar'
 
-const PARTNERIZE_USERNAME = env.get('PARTNERIZE_USERNAME').required().asString()
-const PARTNERIZE_PASSWORD = env.get('PARTNERIZE_PASSWORD').required().asString()
-const PARTNERIZE_ID = env.get('PARTNERIZE_ID').required().asString()
+const PARTNERIZE_USERNAME = getEnvVar(process.env.PARTNERIZE_USERNAME)
+const PARTNERIZE_PASSWORD = getEnvVar(process.env.PARTNERIZE_PASSWORD)
+const PARTNERIZE_ID = getEnvVar(process.env.PARTNERIZE_ID)
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {

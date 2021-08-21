@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
-import * as env from 'env-var'
+import { getEnvVar } from '../utils/getEnvVar';
 
-const GOOGLE_SERVICE_ACCOUNT_CREDENTIALS = env.get('GOOGLE_SERVICE_ACCOUNT_CREDENTIALS').required().asJsonObject()
+const GOOGLE_SERVICE_ACCOUNT_CREDENTIALS = JSON.parse(getEnvVar(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS))
 admin.initializeApp({
     credential: admin.credential.cert(GOOGLE_SERVICE_ACCOUNT_CREDENTIALS)
 });
