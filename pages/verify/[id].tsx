@@ -16,18 +16,20 @@ function VerifyEmailPage() {
   const { id } = router.query;
 
   useEffect(()=>{
-    setError('')
-    postData('/verify-email', {id}).then((res)=>{
-    setSubscription(res.data)
-    setIsLoading(false)
-    }).catch((error)=>{
+    if(id){
+      setError('')
+      postData('/verify-email', {id}).then((res)=>{
+      setSubscription(res.data)
       setIsLoading(false)
-      if(error?.response?.data){
-        setError(error.response.data)
-      }else{
-          setError(error.message)
-      }
-    })
+      }).catch((error)=>{
+        setIsLoading(false)
+        if(error?.response?.data){
+          setError(error.response.data)
+        }else{
+            setError(error.message)
+        }
+      })
+    }
   }, [id])
 
   return (
