@@ -18,7 +18,7 @@ function VerifyEmailPage() {
   useEffect(()=>{
     if(id){
       setError('')
-      postData('/verify-email', {id}).then((res)=>{
+      postData('/api/verify-email', {id}).then((res)=>{
       setSubscription(res.data)
       setIsLoading(false)
       }).catch((error)=>{

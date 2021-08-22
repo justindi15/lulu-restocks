@@ -1,6 +1,6 @@
 import sgMail from "@sendgrid/mail";
 import { Subscription } from "../types/subscription";
-import { getEnvVar } from "../utils/getEnvVar";
+import { getEnvVar } from "./getEnvVar";
 const SENDGRID_API_KEY = getEnvVar(process.env.SENDGRID_API_KEY)
 const FRONTEND_URL = getEnvVar(process.env.FRONTEND_URL)
 

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { fetchVerifiedSubscriptions } from '../../server/firestore'
+import { fetchVerifiedSubscriptions } from '../../utils/firestore'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {

@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { postData } from '../../../utils/api'
 import { Button } from '../../Button'
 import { SearchInput } from '../../SearchInput'
 import { Form, STEPS } from '../TrackItemWizard'
-import isUrl from 'is-url'
 import { Transition } from '@headlessui/react'
-import URL from 'url'
+import { searchForItem } from '../../../utils/searchForItem'
 
 type SearchStepProps = {
     setCurrentStep: Function,
@@ -26,18 +24,10 @@ export const SearchStep = ({ setCurrentStep, setForm }: SearchStepProps) => {
     const submit = async () => {
         setError('')
 
-        try {
-            validateUrl(url)   
-        } catch (error) {
-            setError(error.message)
-            return;
-        }
-
         // submit form and handle response
         setIsLoading(true)
         try {
-            const response = await postData('/search', {url: url})
-            const item = response.data
+            const item = await searchForItem(url)
             setForm((previousForm: Form)=>({
                 ...previousForm,
                 item
@@ -46,21 +36,8 @@ export const SearchStep = ({ setCurrentStep, setForm }: SearchStepProps) => {
             setIsShowing(false)
         } catch (error) {
             setIsLoading(false)
-            if(error?.response?.data){
-                setError(error.response.data)
-            }else{
-                setError(error.message)
-            }
+            setError(error.message)
         }
-    }
-
-    const validateUrl = (url: string) => {
-        const { host, query} = URL.parse(url, true)
-        const { sz: size, color: colourId } = query
-
-        if(!isUrl(url)) throw new Error('Not a valid URL')
-        if(host !== 'shop.lululemon.com') throw new Error('Not a valid Lululemon item URL')
-        if(!size || !colourId) throw new Error('Item is missing size or colour')
     }
     
     return (

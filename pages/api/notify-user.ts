@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { sendHasRestockedEmail } from '../../server/email'
-import { fetchSubscription } from '../../server/firestore'
-import { sendHasRestockedText } from '../../server/text'
+import { sendHasRestockedEmail } from '../../utils/email'
+import { fetchSubscription } from '../../utils/firestore'
+import { sendHasRestockedText } from '../../utils/text'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {
