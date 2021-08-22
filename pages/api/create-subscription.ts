@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createSubscription } from '../../server/firestore'
-import { sendVerifyEmail } from '../../server/email'
+import { createSubscription } from '../../utils/firestore'
+import { sendVerifyEmail } from '../../utils/email'
 import { getEnvVar } from '../../utils/getEnvVar'
 
 const PARTNERIZE_USERNAME = getEnvVar(process.env.PARTNERIZE_USERNAME)

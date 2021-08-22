@@ -1,26 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import URL from 'url'
 import isUrl from 'is-url'
 import axios from 'axios'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    switch (req.method) {
-        case 'POST':
-            return searchForItem(req, res)
-        default:
-            return res.status(404).send('Request handler not found')
-    }
-}
-
-const searchForItem = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { url } = req.body
-
-    try {
-        validateUrl(url)
-    } catch (error) {
-        res.status(401).send(error.message)
-        return;
-    }
+export const searchForItem = async (url: string) => {
+    validateUrl(url)
     
     const { protocol, host, path, query} = URL.parse(url, true)
     const fetchUrl = `${protocol}//${host}/api${path}`
@@ -41,12 +24,11 @@ const searchForItem = async (req: NextApiRequest, res: NextApiResponse) => {
             imageUrl,
             colourString
         }
-        res.send(itemData)   
+        return itemData   
     } catch (error) {
         console.log(error.message)
-        res.status(404).send('We could not find this item. Please try something else.')
+        throw new Error('We could not find this item. Please try something else.')
     }
-    return;
 }
 
 const validateUrl = (url: string) => {
@@ -58,12 +40,12 @@ const validateUrl = (url: string) => {
     if(!size || !colourId) throw new Error('Item URL is missing size or colour')
 }
 
-export const fetchProductData = async (url: string) => {
+const fetchProductData = async (url: string) => {
     const response = await axios.get(url)
     return response.data.data
 }
 
-export const parseProductData = (productData: any, colorCode: any, size: any) => {
+const parseProductData = (productData: any, colorCode: any, size: any) => {
     const childSkus = [...productData.attributes['child-skus']]
     const skuData = childSkus.find(childSku => childSku.size === size && childSku['color-code'] === colorCode)
 
