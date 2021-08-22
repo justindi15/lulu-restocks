@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { postData } from '../utils/api'
+import axios from 'axios'
 import { Button } from './Button'
 import { Input } from './Input'
 import { SelectMenu } from './SelectMenu'
@@ -35,7 +35,7 @@ export const SubscribeForm = ({form, setForm, setTransition}: SubscribeFormProps
 
         try {
             setIsLoading(true)
-            await postData('/api/create-subscription', data)
+            await axios.post('/api/create-subscription', data)
             setIsLoading(false)
             setTransition({isShowing: false, transitionTo: STEPS.FINISH})
         } catch (error) {

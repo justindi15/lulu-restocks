@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { postData } from '../../utils/api';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { Form } from '../../components/TrackItemWizard/TrackItemWizard';
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
@@ -18,7 +18,7 @@ function VerifyEmailPage() {
   useEffect(()=>{
     if(id){
       setError('')
-      postData('/api/verify-email', {id}).then((res)=>{
+      axios.post('/api/verify-email', {id}).then((res)=>{
       setSubscription(res.data)
       setIsLoading(false)
       }).catch((error)=>{
