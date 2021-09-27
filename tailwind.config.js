@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         luluwhite: '#FAFAFA',
         lulured: '#D22030',
-        lightgray: '#E6E6E6'
+        lightgray: '#E6E6E6',
+        unsaturatedred: '#BE3D49'
       },
     },
   },
