@@ -19,6 +19,7 @@ const searchForItem = async (req: NextApiRequest, res: NextApiResponse) => {
     if(size === 'ONESIZE'){
         size = 'ONE SIZE'
     }
+    res.send('ok')
     try {
         const productData = await fetchProductData(fetchUrl)
         const { id: sku, productId, name, imageUrl, colourString } = parseProductData(productData, colourId, size)
