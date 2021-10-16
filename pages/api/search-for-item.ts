@@ -1,10 +1,18 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import URL from 'url'
-import isUrl from 'is-url'
 import axios from 'axios'
 
-export const searchForItem = async (url: string) => {
-    validateUrl(url)
-    
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+    switch (req.method) {
+        case 'POST':
+            return searchForItem(req, res)
+        default:
+            return res.status(404).send('Request handler not found')
+    }
+}
+
+const searchForItem = async (req: NextApiRequest, res: NextApiResponse) => {
+    const { url } = req.body
     const { protocol, host, path, query} = URL.parse(url, true)
     const fetchUrl = `${protocol}//${host}/api${path}`
     let { sz: size, color: colourId } = query
@@ -24,20 +32,10 @@ export const searchForItem = async (url: string) => {
             imageUrl,
             colourString
         }
-        return itemData   
+        res.send(itemData)   
     } catch (error) {
-        console.log(error.message)
-        throw new Error('We could not find this item. Please try something else.')
+        res.status(404).send('We could not find this item. Please try something else.')
     }
-}
-
-const validateUrl = (url: string) => {
-    const { host, query} = URL.parse(url, true)
-    const { sz: size, color: colourId } = query
-
-    if(!isUrl(url)) throw new Error('Not a valid URL')
-    if(host !== 'shop.lululemon.com') throw new Error('Not a valid Lululemon item URL')
-    if(!size || !colourId) throw new Error('Item URL is missing size or colour')
 }
 
 const fetchProductData = async (url: string) => {
