@@ -21,6 +21,8 @@ const notifyUserAndDeleteSubscription = async (req: NextApiRequest, res: NextApi
         await sub.ref.delete()
         res.json(`Sent notification for ${subscription}`)
     } catch (error) {
-        res.status(400).json({error})
+        const sub = await fetchSubscription(subscription.id)
+        await sub.ref.delete()
+        res.status(500).json({error})
     }
 }
